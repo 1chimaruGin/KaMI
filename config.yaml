@@ -1,0 +1,43 @@
+# Wandb
+project: kami
+logging: step 
+send_model_file: False
+
+# Tensor device and type
+device: 'cuda'
+fp16: True
+
+# Model
+task: classfication
+model: tf_efficientnet_b4_ns
+pretrained: True
+num_classes: 2
+
+# Number of epoch
+n_epochs : 3
+
+# Loss function
+loss: CrossEntropyLoss
+
+# Metrics
+metrics: 
+        - accuracy
+        - mean_average_precision
+
+# Optimizer
+optimizer: SGD
+learning_rate: 3e-3
+optimizer_params:
+        weight_decay: 0.01
+        
+# Scheduler
+scheduler: CosineAnnealingWarmRestarts
+scheduler_params: 
+        T_0: 10
+        T_mult: 1
+        eta_min: 1e-6
+        last_epoch: -1
+step_scheduler: False
+
+# Output directory
+output_dir: ''

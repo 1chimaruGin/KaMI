@@ -1,0 +1,17 @@
+program: model.py
+method: grid
+metric:
+  goal: minimize
+  name: loss
+parameters:
+  optimizer:
+    values: [SGD, Adam, RMSprop]
+  learning_rate:
+      values: [0.001, 0.005, 0.0005]
+  n_epochs:
+    values: [5, 10, 15] 
+early_terminate:
+  type: hyperband
+  s: 2
+  eta: 3
+  max_iter: 15
